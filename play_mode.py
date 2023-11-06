@@ -9,6 +9,7 @@ from boy import Boy
 from ball import Ball
 from zombie import Zombie
 
+
 # boy = None
 
 def handle_events():
@@ -20,6 +21,7 @@ def handle_events():
             game_framework.quit()
         else:
             boy.handle_event(event)
+
 
 def init():
     global grass
@@ -39,6 +41,11 @@ def init():
     balls = [Ball(random.randint(0, 1600), 60, 0) for _ in range(50)]
     game_world.add_objects(balls, 1)
 
+    # 충돌 검사 필요 상황을 등록
+    game_world.add_collision_pair('boy:ball', boy, None)
+    for ball in balls:
+        game_world.add_collision_pair('boy:ball', None, ball)
+
 
 def finish():
     game_world.clear()
@@ -48,18 +55,18 @@ def finish():
 def update():
     game_world.update()
     # fill here
-    for ball in balls:
-        if game_world.collide(boy, ball):
-            print('COLLISION: boy : ball')
+    game_world.handle_collisions()
+
 
 def draw():
     clear_canvas()
     game_world.render()
     update_canvas()
 
+
 def pause():
     pass
 
+
 def resume():
     pass
-

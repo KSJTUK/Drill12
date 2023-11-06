@@ -197,3 +197,7 @@ class Boy:
     # fill here
     def get_bb(self):
         return (self.x - 20, self.y - 50, self.x + 20, self.y + 50)
+
+    def handle_collision(self, groub, other):
+        if groub == 'boy:ball':
+            self.ball_count += 1
