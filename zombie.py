@@ -32,7 +32,7 @@ class Zombie:
         self.load_images()
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1,1])
-
+        self.size_x, self.size_y = 200, 200
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
@@ -49,9 +49,18 @@ class Zombie:
         if self.dir < 0:
             Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200, 200)
         else:
-            Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200, 200)
+            Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, self.size_x, self.size_y)
 
+
+    def get_bb(self):
+        return self.x - (self.size_x // 2), self.y - (self.size_y // 2), self.x + (self.size_x // 2), self.y + (self.size_y // 2)
 
     def handle_event(self, event):
         pass
+
+    def handle_collision(self, groub, other):
+        if groub == 'zombie:ball':
+            print('COLLISION zombie:ball')
+        if groub == 'moveball:zombie':
+            print('COLLISION zombie:ball')
 

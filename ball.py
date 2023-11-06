@@ -29,3 +29,5 @@ class Ball:
     def handle_collision(self, groub, other):
         if groub == 'boy:ball':
             game_world.remove_object(self)
+        if groub == 'moveball:zombie':
+            game_world.remove_object(self)

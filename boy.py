@@ -181,6 +181,7 @@ class Boy:
             self.ball_count -= 1
             ball = Ball(self.x, self.y, self.face_dir * 10)
             game_world.add_object(ball)
+            game_world.add_collision_pair('moveball:zombie', None, ball)
 
     def update(self):
         self.state_machine.update()
@@ -201,3 +202,5 @@ class Boy:
     def handle_collision(self, groub, other):
         if groub == 'boy:ball':
             self.ball_count += 1
+        if groub == 'boy:zombie':
+            print('COLLISION boy:zombie')
