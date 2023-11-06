@@ -4,6 +4,8 @@ import game_framework
 
 from pico2d import *
 
+import game_world
+
 # zombie Run Speed
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
 RUN_SPEED_KMPH = 10.0  # Km / Hour
@@ -47,7 +49,7 @@ class Zombie:
 
     def draw(self):
         if self.dir < 0:
-            Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200, 200)
+            Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, self.size_x, self.size_y)
         else:
             Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, self.size_x, self.size_y)
 
@@ -62,5 +64,9 @@ class Zombie:
         if groub == 'zombie:ball':
             print('COLLISION zombie:ball')
         if groub == 'moveball:zombie':
-            print('COLLISION zombie:ball')
+            self.size_x -= 100
+            self.size_y -= 100
+            self.y -= 50
+            if self.size_x == 0:
+                game_world.remove_object(self)
 
