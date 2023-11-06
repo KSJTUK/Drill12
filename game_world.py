@@ -4,12 +4,13 @@ objects = [[] for _ in range(4)]  # 보이는 세계->add_object, -> remove_obje
 # fill here
 # 충돌의 세계->add_collision_pair
 #           ->remove_collision_pair
-collision_pairs = {} # {'bal:ball' : [ [ boy ], [ ball ] ] }
+collision_pairs = {}  # {'bal:ball' : [ [ boy ], [ ball ] ] }
+
 
 def add_collision_pair(groub, a=None, b=None):  # a와 b 사이에 충돌 검사가 필요하다
     if groub not in collision_pairs:
         print(f'Added new groub {groub}')
-        collision_pairs[groub] = [ [] , [] ]
+        collision_pairs[groub] = [[], []]
     if a:
         collision_pairs[groub][0].append(a)
     if b:
@@ -57,7 +58,6 @@ def remove_collision_object(o):
             pairs[1].remove(o)
 
 
-
 def remove_object(o):
     for layer in objects:
         if o in layer:
@@ -74,6 +74,7 @@ def remove_object(o):
 def clear():
     for layer in objects:
         layer.clear()
+
 
 # fill here
 def handle_collisions():
