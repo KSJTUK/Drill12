@@ -34,7 +34,9 @@ def init():
     game_world.add_object(boy, 1)
 
     # fill here
-
+    # 볼을 쉽게 바닥에 뿌림
+    balls = [Ball(random.randint(0, 1600), 60, 0) for _ in range(50)]
+    game_world.add_objects(balls, 1)
 
 
 def finish():
