@@ -13,6 +13,8 @@ class Ball:
 
     def draw(self):
         self.image.draw(self.x, self.y)
+        # 디버그용 바운딩 박스 그리기
+        draw_rectangle(*self.get_bb())
 
     def update(self):
         self.x += self.velocity * 100 * game_framework.frame_time
