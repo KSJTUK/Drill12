@@ -81,6 +81,5 @@ def handle_collisions():
         for a in pairs[0]:
             for b in pairs[1]:
                 if collide(a, b):
-                    print('COLLISION: boy : ball')
                     a.handle_collision(groub, b)
                     b.handle_collision(groub, a)

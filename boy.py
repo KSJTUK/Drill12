@@ -203,4 +203,5 @@ class Boy:
         if groub == 'boy:ball':
             self.ball_count += 1
         if groub == 'boy:zombie':
-            print('COLLISION boy:zombie')
+            game_framework.quit()
+            print('boy meet zombie...')
